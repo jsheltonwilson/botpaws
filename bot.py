@@ -1,0 +1,146 @@
+import discord
+from discord.ext import commands
+from discord.utils import get
+import datetime
+import random
+from ruamel.yaml import YAML
+import os
+
+
+yaml = YAML()
+with open("./config.yml", "r", encoding = "utf-8") as file:
+    config = yaml.load(file)
+
+
+
+
+bot = commands.Bot(command_prefix =config['Prefix'] , description = "speedy paw bot created by speediest paws")
+
+tChannelID = config['test Channel ID']
+
+bot.embed_color = discord.Color.from_rgb(
+    config['Embed Settings']['Color']['r'],
+    config['Embed Settings']['Color']['g'],
+    config['Embed Settings']['Color']['b']
+)
+
+
+emoji = '<:pucca:768598768726966282>'
+
+bot.footer = config['Embed Settings']['Footer']['Text']
+bot.footer_image = config['Embed Settings']['Footer']['Icon URL']
+
+bot.TOKEN = os.getenv(config['Bot Token Variable Name'])
+
+@bot.event
+async def on_ready():
+    print(f"logged in as {bot.user}. and connected to server! (ID: {bot.user.id} )")
+    #pucca = '<:pucca:768598768726966282>'
+    status = config['Playing Status']
+    game = discord.Game(name = status)
+    await bot.change_presence(activity = game)
+
+    embed = discord.Embed(
+        title = f"{bot.user.name} is here!",
+        color = bot.embed_color,
+        timestamp = datetime.datetime.now(datetime.timezone.utc)
+    )
+    embed.set_footer(
+        text = bot.footer,
+        icon_url= bot.footer_image
+
+    )
+    
+    bot.tchannel = bot.get_channel(tChannelID)
+    await bot.tchannel.send(embed = embed)
+
+
+@bot.event
+async def on_message(message):
+    if bot.user.mentioned_in(message) and message.mention_everyone is False:
+        if message.author.id == 573247938747170836 or message.author.id == 395616177386422285:
+            await message.channel.send("hi speedy paws")
+        elif message.author.id == 376673538414739458:
+            await message.channel.send("hi lil speedy paws")
+        elif message.author.id == 358744905796943883:
+            await message.channel.send('hi medium paws')
+        else:
+            await message.channel.send("hi slow paws")
+    await bot.process_commands(message)
+
+@bot.command(name = "restart", aliases = ["r"], help = "restart botpaws.")
+@commands.is_owner()
+async def restart(ctx):
+    embedclose = discord.Embed(
+        title = f'{bot.user.name} restarting!',
+        color = bot.embed_color,
+        timestamp = datetime.datetime.now(datetime.timezone.utc)
+    )
+    embedclose.set_author(
+        name = ctx.author.name,
+        icon_url = ctx.author.avatar_url
+
+    )
+    embedclose.set_footer(
+        text = bot.footer,
+        icon_url= bot.footer_image
+    )
+    await bot.tchannel.send(embed= embedclose)
+    
+    await ctx.message.add_reaction(emoji)
+    
+    await bot.close()
+
+
+@bot.command(help ="shows bot latency")
+async def ping(ctx):
+    await ctx.send(f'Pong! {round(bot.latency * 1000)}ms')
+
+
+@bot.command(name ="8ball", aliases= ["8b"],help = "8 ball command duh")
+async def _8ball(ctx, *, question):
+
+    responses = [
+            "It is certain.",
+            "It is decidedly so.",
+            "Without a doubt.",
+            "Yes - definitely.",
+            "You may rely on it.",
+            "As I see it, yes.",
+            "Most likely.",
+            "Outlook good.",
+            "Yes.",
+            "Signs point to yes.",
+            "Reply hazy, try again.",
+            "Ask again later.",
+            "Better not tell you now.",
+            "Cannot predict now.",
+            "Concentrate and ask again.",
+            "Don't count on it.",
+            "My reply is no.",
+            "My sources say no.",
+            "Outlook not so good.",
+            "Very doubtful."]
+    embed8ball = discord.Embed(
+        title = f'Question: {question}\nAnswer: {random.choice(responses)}',
+        color = bot.embed_color,
+        timestamp = datetime.datetime.now(datetime.timezone.utc)
+
+    )
+    embed8ball.set_author(
+        name = ctx.author.name,
+        icon_url = ctx.author.avatar_url
+
+    )
+    embed8ball.set_footer(
+        text = bot.footer,
+        icon_url= bot.footer_image
+    )
+    
+    await ctx.channel.send(embed = embed8ball)
+
+
+
+            
+
+bot.run(bot.TOKEN, bot=True, reconnect=True)

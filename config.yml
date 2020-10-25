@@ -1,0 +1,26 @@
+# The name of environment variable that contains the bot token.
+Bot Token Variable Name: botPawToken
+
+#prefix used by bot for commands
+Prefix: "paw "
+
+#the playing status of the bot
+Playing Status: doing speedy paw stuff
+
+
+#the ID of the text channel where log messages will be sent
+test Channel ID: 768844665440174141
+
+#settings that apply to embedded messages that the bot sends
+Embed Settings:
+  #RGB color values for embed colors
+  Color:
+    r: 255
+    g: 192
+    b: 192
+  
+  #settings bot will use for footers
+  Footer:
+    Text: brought to you by botpaws
+    Icon URL: https://i.imgur.com/YOSO8uu.png"
+
