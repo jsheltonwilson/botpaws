@@ -1,6 +1,6 @@
 #!/bin/sh
 
-TIMEOUT ="5s"
+TIMEOUT="5s"
 
 while : ; do
     python3 bot.py
