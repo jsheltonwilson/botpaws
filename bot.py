@@ -5,6 +5,7 @@ import datetime
 import random
 from ruamel.yaml import YAML
 import os
+import requests
 
 
 yaml = YAML()
@@ -152,7 +153,25 @@ async def uptime(ctx):
     hours, remainder = divmod(int(delta_uptime.total_seconds()), 3600)
     minutes, seconds = divmod(remainder, 60)
     days, hours = divmod(hours, 24)
-    await ctx.send(f'botpaws has been up for {days}d, {hours}h, {minutes}m')
+    await ctx.send(f'botpaws has been up for {days}d, {hours}h, {minutes}m, {seconds}s')
+
+@bot.command(help= "hug another member duh")
+async def hug(ctx, member: discord.Member):
+    request_url ="http://api.nekos.fun:8080/api/hug"
+    response = requests.get(request_url)
+
+    embedHug = discord.Embed(
+        title = f'{ctx.author.display_name} hugs {member.display_name}',
+        color = bot.embed_color,
+        timestamp = datetime.datetime.now(datetime.timezone.utc),
+    )
+    embedHug.set_footer(
+        text = bot.footer,
+        icon_url= bot.footer_image
+    )
+    embedHug.set_image(url= response)
+    await ctx.channel.send(embed= embedHug)
+
 
 
 
