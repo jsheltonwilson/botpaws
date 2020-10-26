@@ -66,6 +66,11 @@ async def on_message(message):
             await message.channel.send('hi medium paws')
         else:
             await message.channel.send("hi slow paws")
+    
+    if 'bat' or 'BAT' in message.content:
+        await message.channel.send('bats are haram')
+    
+    
     await bot.process_commands(message)
 
 @bot.command(name = "restart", aliases = ["r"], help = "restart botpaws.")
