@@ -67,8 +67,8 @@ async def on_message(message):
         else:
             await message.channel.send("hi slow paws")
     
-    if 'bat' in message.content:
-        await message.channel.send('bats are haram')
+    if any([keyword in message.content for keyword in ('bat', 'BAT', 'bat gang')]):
+        await message.channel.send("haram")
     
     
     await bot.process_commands(message)
