@@ -67,7 +67,7 @@ async def on_message(message):
         else:
             await message.channel.send("hi slow paws")
     
-    if 'bat' or 'BAT' in message.content:
+    if 'bat' in message.content:
         await message.channel.send('bats are haram')
     
     
