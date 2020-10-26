@@ -15,7 +15,7 @@ with open("./config.yml", "r", encoding = "utf-8") as file:
 
 
 bot = commands.Bot(command_prefix =config['Prefix'] , description = "speedy paw bot created by speediest paws")
-
+bot.startTime = datetime.datetime.now(datetime.timezone.utc)
 tChannelID = config['test Channel ID']
 
 bot.embed_color = discord.Color.from_rgb(
@@ -138,6 +138,17 @@ async def _8ball(ctx, *, question):
     )
     
     await ctx.channel.send(embed = embed8ball)
+
+
+
+
+@bot.command(aliases=['live'], help="displays how long botpaws has been running")
+async def uptime(ctx):
+    delta_uptime =  datetime.datetime.now(datetime.timezone.utc) - bot.startTime
+    hours, remainder = divmod(int(delta_uptime.total_seconds()), 3600)
+    minutes, seconds = divmod(remainder, 60)
+    days, hours = divmod(hours, 24)
+    await ctx.send(f'botpaws has been up for {days}d, {hours}h, {minutes}m')
 
 
 
