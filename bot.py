@@ -67,6 +67,8 @@ async def on_message(message):
             await message.channel.send("hi lil speedy paws")
         elif message.author.id == 358744905796943883:
             await message.channel.send('hi medium paws')
+        elif message.author.id == 699403795876282398:
+            await message.channel.send("hi rusty paws")
         else:
             await message.channel.send("hi slow paws")
     
@@ -238,7 +240,7 @@ async def avatar(ctx, *, member: discord.Member = None):
     embedAV.set_image(url='{}'.format(member.avatar_url))
     await ctx.channel.send(embed= embedAV)
 
-@bot.command()
+@bot.command(help="makes a quick yes/no poll")
 async def poll(ctx, *, question):
     await ctx.channel.purge(limit=1)
     embedPoll = discord.Embed(
@@ -248,7 +250,7 @@ async def poll(ctx, *, question):
         timestamp = datetime.datetime.now(datetime.timezone.utc)
     )
     embedPoll.set_footer(
-        text = bot.footer,
+        text = f'{moosmile} for yes {moofrown} for no',
         icon_url= bot.footer_image
     )
     sentPoll = await ctx.channel.send(embed = embedPoll)
