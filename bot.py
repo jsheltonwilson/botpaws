@@ -165,7 +165,7 @@ async def hug(ctx, member: discord.Member):
     embedHug = discord.Embed(
         title = f'{ctx.author.display_name} **hugs** {member.display_name}',
         color = bot.embed_color,
-        timestamp = datetime.datetime.now(datetime.timezone.utc),
+        timestamp = datetime.datetime.now(datetime.timezone.utc)
     )
     embedHug.set_footer(
         text = bot.footer,
@@ -184,7 +184,7 @@ async def slap(ctx, member: discord.Member):
     embedSlap = discord.Embed(
         title = f'{ctx.author.display_name} **slaps** {member.display_name}',
         color = bot.embed_color,
-        timestamp = datetime.datetime.now(datetime.timezone.utc),
+        timestamp = datetime.datetime.now(datetime.timezone.utc)
     )
     embedSlap.set_footer(
         text = bot.footer,
@@ -192,6 +192,48 @@ async def slap(ctx, member: discord.Member):
     )
     embedSlap.set_image(url= imgURL)
     await ctx.channel.send(embed= embedSlap)
+
+@bot.command(help="kiss another member, **haram command**")
+async def kiss(ctx, member: discord.Member):
+    request_url ="http://api.nekos.fun:8080/api/kiss"
+    response = requests.get(request_url)
+    responseJSON = response.json()
+    imgURL = responseJSON.get('image')
+
+    embedKiss = discord.Embed(
+        title = f'{ctx.author.display_name} **Kisses** {member.display_name}',
+        color = bot.embed_color,
+        timestamp = datetime.datetime.now(datetime.timezone.utc)
+    )
+    embedKiss.set_footer(
+        text = bot.footer,
+        icon_url= bot.footer_image
+    )
+    embedKiss.set_image(url= imgURL)
+    await ctx.channel.send(embed= embedKiss)
+
+@bot.command(aliases=['av'], help="display avatar of member, if no argument given display your avatar")
+async def avatar(ctx, member: discord.Member = None):
+    if member is None:
+        member = ctx.message.author
+    else:
+        member = member.display_name
+    
+    embedAV = discord.Embed(
+        title = f'{member}',
+        color = bot.embed_color,
+        timestamp = datetime.datetime.now(datetime.timezone.utc)
+
+    )
+    embedAV.set_footer(
+        text = bot.footer,
+        icon_url= bot.footer_image
+    )
+    embedAV.set_image(url='{}'.format(member.avatar_url))
+    await ctx.channel.send(embed= embedAV)
+    
+
+
 
 
 
