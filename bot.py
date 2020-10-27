@@ -26,7 +26,9 @@ bot.embed_color = discord.Color.from_rgb(
 )
 
 
-emoji = '<:pucca:768598768726966282>'
+emoji = config['Emojis']['pucca']
+moosmile = config['Emojis']['moosmile']
+moofrown = config['Emojis']['moofrown']
 
 bot.footer = config['Embed Settings']['Footer']['Text']
 bot.footer_image = config['Embed Settings']['Footer']['Icon URL']
@@ -224,7 +226,7 @@ async def avatar(ctx, *, member: discord.Member = None):
         timestamp = datetime.datetime.now(datetime.timezone.utc)
 
     )
-    embedPoll.set_author(
+    embedAV.set_author(
         name = ctx.author.name,
         icon_url = ctx.author.avatar_url
 
@@ -249,12 +251,14 @@ async def poll(ctx, *, question):
         text = bot.footer,
         icon_url= bot.footer_image
     )
-    await ctx.channel.send(embed = embedPoll)
+    sentPoll = await ctx.channel.send(embed = embedPoll)
+    await ctx.bot.add_reaction(sentPoll, emoji= moosmile)
+    await ctx.bot.add_reaction(sentPoll, emoji= moofrown)
 
 
 
-    await embedPoll.add_reaction('❎')
-    await embedPoll.add_reaction('✅')
+    #await embedPoll.add_reaction('❎')
+    #await embedPoll.add_reaction('✅')
     
 
 
