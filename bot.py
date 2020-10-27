@@ -163,7 +163,7 @@ async def hug(ctx, member: discord.Member):
     imgURL = responseJSON.get('image')
 
     embedHug = discord.Embed(
-        title = f'{ctx.author.display_name} hugs {member.display_name}',
+        title = f'{ctx.author.display_name} **hugs** {member.display_name}',
         color = bot.embed_color,
         timestamp = datetime.datetime.now(datetime.timezone.utc),
     )
@@ -172,6 +172,25 @@ async def hug(ctx, member: discord.Member):
         icon_url= bot.footer_image
     )
     embedHug.set_image(url= imgURL)
+    await ctx.channel.send(embed= embedHug)
+
+@bot.command(help= "slap another member duh")
+async def slap(ctx, member: discord.Member):
+    request_url ="http://api.nekos.fun:8080/api/slap"
+    response = requests.get(request_url)
+    responseJSON = response.json()
+    imgURL = responseJSON.get('image')
+
+    embedSlap = discord.Embed(
+        title = f'{ctx.author.display_name} **slaps** {member.display_name}',
+        color = bot.embed_color,
+        timestamp = datetime.datetime.now(datetime.timezone.utc),
+    )
+    embedSlap.set_footer(
+        text = bot.footer,
+        icon_url= bot.footer_image
+    )
+    embedSlap.set_image(url= imgURL)
     await ctx.channel.send(embed= embedHug)
 
 
