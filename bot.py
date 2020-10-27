@@ -234,7 +234,20 @@ async def avatar(ctx, *, member: discord.Member = None):
 @bot.command()
 async def poll(ctx, *, question):
     await ctx.channel.purge(limit=1)
-    message = await ctx.send(f"```New poll: \n✅ = Yes**\n**❎ = No**")
+    embedPoll = discord.Embed(
+        title = "new poll",
+        description = question,
+        color = bot.embed_color,
+        timestamp = datetime.datetime.now(datetime.timezone.utc)
+    )
+    embedPoll.set_footer(
+        text = bot.footer,
+        icon_url= bot.footer_image
+    )
+    await ctx.channel.send(embed = embedPoll)
+
+
+
     await message.add_reaction('❎')
     await message.add_reaction('✅')
     
