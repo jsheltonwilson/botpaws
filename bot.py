@@ -191,7 +191,7 @@ async def slap(ctx, member: discord.Member):
         icon_url= bot.footer_image
     )
     embedSlap.set_image(url= imgURL)
-    await ctx.channel.send(embed= embedHug)
+    await ctx.channel.send(embed= embedSlap)
 
 
 
