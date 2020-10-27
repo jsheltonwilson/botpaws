@@ -249,6 +249,11 @@ async def poll(ctx, *, question):
         color = bot.embed_color,
         timestamp = datetime.datetime.now(datetime.timezone.utc)
     )
+    embedPoll.set_author(
+        name = ctx.author.name,
+        icon_url = ctx.author.avatar_url
+
+    )
     embedPoll.set_footer(
         text = bot.footer,
         icon_url= bot.footer_image
