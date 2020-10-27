@@ -224,6 +224,11 @@ async def avatar(ctx, *, member: discord.Member = None):
         timestamp = datetime.datetime.now(datetime.timezone.utc)
 
     )
+    embedPoll.set_author(
+        name = ctx.author.name,
+        icon_url = ctx.author.avatar_url
+
+    )
     embedAV.set_footer(
         text = bot.footer,
         icon_url= bot.footer_image
@@ -248,8 +253,8 @@ async def poll(ctx, *, question):
 
 
 
-    await message.add_reaction('❎')
-    await message.add_reaction('✅')
+    await embedPoll.add_reaction('❎')
+    await embedPoll.add_reaction('✅')
     
 
 
