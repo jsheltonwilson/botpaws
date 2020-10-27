@@ -252,8 +252,8 @@ async def poll(ctx, *, question):
         icon_url= bot.footer_image
     )
     sentPoll = await ctx.channel.send(embed = embedPoll)
-    await bot.add_reaction(sentPoll, emoji= moosmile)
-    await bot.add_reaction(sentPoll, emoji= moofrown)
+    await sentPoll.add_reaction(emoji= moosmile)
+    await sentPoll.add_reaction(emoji= moofrown)
 
 
 
