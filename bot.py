@@ -230,6 +230,13 @@ async def avatar(ctx, *, member: discord.Member = None):
     )
     embedAV.set_image(url='{}'.format(member.avatar_url))
     await ctx.channel.send(embed= embedAV)
+
+@bot.command()
+async def poll(ctx, *, question):
+    await ctx.channel.purge(limit=1)
+    message = await ctx.send(f"```New poll: \n✅ = Yes**\n**❎ = No**")
+    await message.add_reaction('❎')
+    await message.add_reaction('✅')
     
 
 
