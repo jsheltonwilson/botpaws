@@ -213,11 +213,10 @@ async def kiss(ctx, member: discord.Member):
     await ctx.channel.send(embed= embedKiss)
 
 @bot.command(aliases=['av'], help="display avatar of member, if no argument given display your avatar")
-async def avatar(ctx, member: discord.Member = None):
+async def avatar(ctx, *, member: discord.Member = None):
     if member is None:
         member = ctx.message.author
-    else:
-        member = member.display_name
+    
     
     embedAV = discord.Embed(
         title = f'{member}',
