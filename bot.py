@@ -250,7 +250,7 @@ async def poll(ctx, *, question):
         timestamp = datetime.datetime.now(datetime.timezone.utc)
     )
     embedPoll.set_footer(
-        text = f'{moosmile} for yes {moofrown} for no',
+        text = bot.footer,
         icon_url= bot.footer_image
     )
     sentPoll = await ctx.channel.send(embed = embedPoll)
