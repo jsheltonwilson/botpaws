@@ -153,7 +153,7 @@ async def uptime(ctx):
     hours, remainder = divmod(int(delta_uptime.total_seconds()), 3600)
     minutes, seconds = divmod(remainder, 60)
     days, hours = divmod(hours, 24)
-    await ctx.send(f'botpaws has been up for {days}d, {hours}h, {minutes}m, {seconds}s')
+    await ctx.send(f'botpaws has been up for {days}d, {hours}h, {minutes}m and {seconds}s')
 
 @bot.command(help= "hug another member duh")
 async def hug(ctx, member: discord.Member):
@@ -169,7 +169,7 @@ async def hug(ctx, member: discord.Member):
         text = bot.footer,
         icon_url= bot.footer_image
     )
-    embedHug.set_image(url= response)
+    embedHug.set_image(url= response.content)
     await ctx.channel.send(embed= embedHug)
 
 
