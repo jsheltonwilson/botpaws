@@ -159,6 +159,8 @@ async def uptime(ctx):
 async def hug(ctx, member: discord.Member):
     request_url ="http://api.nekos.fun:8080/api/hug"
     response = requests.get(request_url)
+    responseJSON = response.json()
+    imgURL = responseJSON.get('image')
 
     embedHug = discord.Embed(
         title = f'{ctx.author.display_name} hugs {member.display_name}',
@@ -169,7 +171,7 @@ async def hug(ctx, member: discord.Member):
         text = bot.footer,
         icon_url= bot.footer_image
     )
-    embedHug.set_image(url= response.content)
+    embedHug.set_image(url= imgURL)
     await ctx.channel.send(embed= embedHug)
 
 
