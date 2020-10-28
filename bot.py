@@ -216,7 +216,7 @@ async def kiss(ctx, member: discord.Member):
     embedKiss.set_image(url= imgURL)
     await ctx.channel.send(embed= embedKiss)
 
-@bot.command(help="kiss another member, **haram command**")
+@bot.command(help="cry command for sad paws")
 async def cry(ctx, member: discord.Member=None):
     request_url ="http://api.nekos.fun:8080/api/cry"
     response = requests.get(request_url)
