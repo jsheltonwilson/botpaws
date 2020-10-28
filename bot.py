@@ -216,6 +216,26 @@ async def kiss(ctx, member: discord.Member):
     embedKiss.set_image(url= imgURL)
     await ctx.channel.send(embed= embedKiss)
 
+@bot.command(help="kiss another member, **haram command**")
+async def cry(ctx, member: discord.Member=None):
+    request_url ="http://api.nekos.fun:8080/api/cry"
+    response = requests.get(request_url)
+    responseJSON = response.json()
+    imgURL = responseJSON.get('image')
+
+    embedCry = discord.Embed(
+        title = f'{ctx.author.display_name} is sad paws',
+        color = bot.embed_color,
+        timestamp = datetime.datetime.now(datetime.timezone.utc)
+    )
+    embedCry.set_footer(
+        text = bot.footer,
+        icon_url= bot.footer_image
+    )
+    embedCry.set_image(url= imgURL)
+    await ctx.channel.send(embed= embedCry)
+
+
 @bot.command(aliases=['av'], help="display avatar of member, if no argument given display your avatar")
 async def avatar(ctx, *, member: discord.Member = None):
     if member is None:
