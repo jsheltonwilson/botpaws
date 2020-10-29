@@ -164,7 +164,7 @@ async def boo(ctx, *, member: discord.Member=None):
     if member is None:
         member = ctx.messsage.author
     
-    boo = member.mentioned()
+    boo = member.mention()
 
     await ctx.channel.send(f'boo! {boo}')
 
