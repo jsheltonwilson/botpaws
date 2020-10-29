@@ -293,14 +293,16 @@ async def poll(ctx, *, question):
     await sentPoll.add_reaction(emoji= moosmile)
     await sentPoll.add_reaction(emoji= moofrown)
 
-@bot.command()
+@bot.command(help=" spotify command to show currently playing song if unable to see due to other activity blocking it")
 async def spotify(ctx, *, member: discord.Member=None):
     if member is None:
         member = ctx.message.author
     
     for activity in member.activities:
         if isinstance(activity, Spotify):
-            await ctx.send(f"{member.display_name} is listening to {activity.title} by {activity.artist}")
+            await ctx.channel.send(f"{member.display_name} is listening to {activity.title} by {activity.artist}")
+        else: 
+            await ctx.channel.send(f"{member.display_name} is not currently listening to music (weirdo).")
 
 
     
