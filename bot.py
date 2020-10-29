@@ -294,7 +294,7 @@ async def poll(ctx, *, question):
     await sentPoll.add_reaction(emoji= moofrown)
 
 @bot.command()
-async def spotify(ctx, *, member: Discord.Member=None):
+async def spotify(ctx, *, member: discord.Member=None):
     if member is None:
         member = ctx.message.author
     
