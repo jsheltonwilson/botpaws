@@ -6,6 +6,7 @@ import random
 from ruamel.yaml import YAML
 import os
 import requests
+from discord import Spotify
 
 
 yaml = YAML()
@@ -292,10 +293,16 @@ async def poll(ctx, *, question):
     await sentPoll.add_reaction(emoji= moosmile)
     await sentPoll.add_reaction(emoji= moofrown)
 
+@bot.command()
+async def spotify(ctx, *, member: Discord.Member=None):
+    if member is None:
+        member = ctx.message.author
+    
+    for activity in member.activities:
+        if isinstance(activity, Spotify):
+            await ctx.send(f"{member.display_name} is listening to {activity.title} by {activity.artist}")
 
 
-    #await embedPoll.add_reaction('❎')
-    #await embedPoll.add_reaction('✅')
     
 
 
