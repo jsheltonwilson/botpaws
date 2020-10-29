@@ -159,6 +159,12 @@ async def uptime(ctx):
     days, hours = divmod(hours, 24)
     await ctx.send(f'botpaws has been up for {days}d, {hours}h, {minutes}m and {seconds}s')
 
+@bot.command(help="boo!")
+async def boo(ctx, member: discord.Member):
+    if member is None:
+        member = ctx.messsage.author
+    await ctx.channel.send(f'boo! {message.author.mention()} ')
+
 @bot.command(help= "hug another member duh")
 async def hug(ctx, member: discord.Member):
     request_url ="http://api.nekos.fun:8080/api/hug"
