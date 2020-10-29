@@ -71,11 +71,7 @@ async def on_message(message):
             await message.channel.send("hi rusty paws")
         else:
             await message.channel.send("hi slow paws")
-    if message.author == bot.user:
-        return
-    
-    if 'bat' or 'BAT' in message.content:
-        await message.channel.send('bats are haram')
+   
     
     
     
