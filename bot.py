@@ -160,10 +160,11 @@ async def uptime(ctx):
     await ctx.send(f'botpaws has been up for {days}d, {hours}h, {minutes}m and {seconds}s')
 
 @bot.command(help="boo!")
-async def boo(ctx, member: discord.Member):
+async def boo(ctx, *, member: discord.Member):
     if member is None:
         member = ctx.messsage.author
-    await ctx.send(f'boo! {member.mention()} ')
+
+    await ctx.channel.send(f'boo! {member.mention()}')
 
 @bot.command(help= "hug another member duh")
 async def hug(ctx, member: discord.Member):
