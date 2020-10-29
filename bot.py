@@ -162,7 +162,7 @@ async def uptime(ctx):
 @bot.command(help="boo!")
 async def boo(ctx, *, member: discord.Member=None):
     if member is None:
-        member = ctx.messsage.author
+        member = ctx.message.author
     
     
 
