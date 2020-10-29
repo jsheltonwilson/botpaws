@@ -164,9 +164,9 @@ async def boo(ctx, *, member: discord.Member=None):
     if member is None:
         member = ctx.messsage.author
     
-    boo = member.mention()
+    
 
-    await ctx.channel.send(f'boo! {boo}')
+    await ctx.channel.send(f'boo! {member.mention}')
 
 @bot.command(help= "hug another member duh")
 async def hug(ctx, member: discord.Member):
