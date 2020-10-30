@@ -305,7 +305,7 @@ async def spotify(self, ctx, user: discord.Member = None):
     embed.add_field(name="Song", value=spot.title)
     embed.add_field(name="Artist", value=spot.artist)
     embed.add_field(name="Album", value=spot.album)
-    embed.add_field(name="Track Link", value=f"[{spot.title}](https://open.spotify.com/track/{spot.track_id})")
+    
     embed.set_thumbnail(url=spot.album_cover_url)
     await ctx.send(embed=embed)
     print(f'{user.name} in {ctx.guild} called the command !spotify')
