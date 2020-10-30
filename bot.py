@@ -300,7 +300,7 @@ async def spotify(ctx, *, member: discord.Member=None):
         member = ctx.message.author
     
     for activity in member.activities:
-         spot = next((activity for activity in user.activities if isinstance(activity, discord.Spotify)), None)
+        spot = next((activity for activity in user.activities if isinstance(activity, discord.Spotify)), None)
         if spot is None:
             await ctx.channel.send(f"{member.name} is not listening to music. ||weirdo||")
        
