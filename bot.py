@@ -301,16 +301,18 @@ async def spotify(ctx, *, user: discord.Member=None):
         user = ctx.message.author
 
     for activity in user.activities:
-        em = discord.Embed()
-        em.title = f'{user.display_name} is listening to Spotify'
-        em.set_thumbnail(url=activity.album_cover_url)
-        em.add_field(name="**Song name:**", value=activity.title, inline=False)
-        em.add_field(name="**Song artist:**", value=activity.artist, inline=False)
-        m1, s1 = divmod(int(activity.duration.seconds), 60)
-        song_length = f'{m1}:{s1}'
-        em.add_field(name="**Song Length:**", value=song_length, inline=False)
-        
-        await ctx.send(embed=em)
+        if isinstance(activity, Spotify):
+
+            em = discord.Embed()
+            em.title = f'{user.display_name} is listening to Spotify'
+            em.set_thumbnail(url=activity.album_cover_url)
+            em.add_field(name="**Song name:**", value=activity.title, inline=False)
+            em.add_field(name="**Song artist:**", value=activity.artist, inline=False)
+            m1, s1 = divmod(int(activity.duration.seconds), 60)
+            song_length = f'{m1}:{s1}'
+            em.add_field(name="**Song Length:**", value=song_length, inline=False)
+            
+            await ctx.send(embed=em)
    
 
 
