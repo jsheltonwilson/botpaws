@@ -294,7 +294,7 @@ async def poll(ctx, *, question):
     await sentPoll.add_reaction(emoji= moofrown)
 
 
-
+@bot.command()
 async def spotify(self, ctx, user: discord.Member = None):
     user = user or ctx.author  
     spot = next((activity for activity in user.activities if isinstance(activity, discord.Spotify)), None)
