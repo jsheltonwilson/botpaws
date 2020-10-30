@@ -318,7 +318,7 @@ async def spotify(ctx, *, member: discord.Member=None):
             song_length = f'{m1}:{s1}'
             emSpot.add_field(name="**Song Length:**", value=song_length, inline=False)
             await ctx.send(embed=emSpot) 
-        else:
+        elif isinstance(activity, Spotify) == False:
             await ctx.channel.send(f'{member.display_name} is not listening to music. ||weirdo||')
 
 
