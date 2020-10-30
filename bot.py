@@ -297,11 +297,11 @@ async def poll(ctx, *, question):
 
 @bot.command()
 @commands.guild_only()
-async def spotify(ctx, user: discord.Member=None):
-    user = user or ctx.author
-    for activity in user.activities:
+async def spotify(ctx, member: discord.Member=None):
+    member = member or ctx.message.author
+    for activity in member.activities:
         if isinstance(activity, Spotify):
-            await ctx.send(f"{user} is listening to {activity.title} by {activity.artist}")
+            await ctx.send(f"{member.display_name} is listening to {activity.title} by {activity.artist}")
     
 
 
