@@ -300,26 +300,27 @@ async def spotify(ctx, *, member: discord.Member=None):
         member = ctx.message.author
     
     for activity in member.activities:
-        if isinstance(activity, Spotify):
-            emSpot = discord.Embed(
-                title = f'*{member.display_name} is listening to spotify*',
-                color = bot.embed_color,
-            )
-            emSpot.set_footer(
-                text= bot.footer,
-                icon_url=bot.footer_image
-            )
-            
-            emSpot.set_thumbnail(url=activity.album_cover_url)
-            emSpot.add_field(name="**Song name:**", value=activity.title, inline=False)
-            emSpot.add_field(name="**Song artist:**", value=activity.artist, inline=False)
-            m1, s1 = divmod(int(activity.duration.seconds), 60)
-            song_length = f'{m1}:{s1}'
-            emSpot.add_field(name="**Song Length:**", value=song_length, inline=False)
-            await ctx.send(embed=emSpot) 
+         spot = next((activity for activity in user.activities if isinstance(activity, discord.Spotify)), None)
+        if spot is None:
+            await ctx.channel.send(f"{member.name} is not listening to music. ||weirdo||")
+       
+        emSpot = discord.Embed(
+            title = f'*{member.display_name} is listening to spotify*',
+            color = bot.embed_color,
+        )
+        emSpot.set_footer(
+            text= bot.footer,
+            icon_url=bot.footer_image
+        )
         
-        else:
-            await ctx.channel.send(f'{member.display_name} is not listening to music. ||weirdo||')
+        emSpot.set_thumbnail(url=spot.album_cover_url)
+        emSpot.add_field(name="**Song name:**", value=spot.title, inline=False)
+        emSpot.add_field(name="**Song artist:**", value=spot.artist, inline=False)
+        m1, s1 = divmod(int(spot.duration.seconds), 60)
+        song_length = f'{m1}:{s1}'
+        emSpot.add_field(name="**Song Length:**", value=song_length, inline=False)
+        await ctx.send(embed=emSpot) 
+    
 
 
 
