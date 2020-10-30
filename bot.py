@@ -294,11 +294,19 @@ async def poll(ctx, *, question):
     await sentPoll.add_reaction(emoji= moofrown)
 
 @bot.command(help=" spotify command to show currently playing song if unable to see due to other activity blocking it")
-async def spotify(ctx, user: discord.Member=None):
-    user = user or ctx.author
-    for activity in user.activities:
-        if isinstance(activity, Spotify):
-            await ctx.send(f"{user} is listening to {activity.title} by {activity.artist}")
+@commands.guild_only()
+async def spotify(ctx, user: discord.Member = None):
+    user = user or ctx.author  # default to the caller
+    spot = next((activity for activity in user.activities if isinstance(activity, discord.Spotify)), None)
+    if spot is None:
+        await ctx.send(f"{user.name} is not listening to Spotify")
+        return
+    embedspotify = discord.Embed(title=f"{user.name}'s Spotify", color=0x1eba10)
+    embedspotify.add_field(name="Song", value=spot.title)
+    embedspotify.add_field(name="Artist", value=spot.artist)
+    embedspotify.add_field(name="Album", value=spot.album)
+    embedspotify.set_thumbnail(url=spot.album_cover_url)
+    await ctx.send(embed=embedspotify)
 
 
     
