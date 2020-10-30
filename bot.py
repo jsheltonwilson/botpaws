@@ -293,8 +293,10 @@ async def poll(ctx, *, question):
     await sentPoll.add_reaction(emoji= moosmile)
     await sentPoll.add_reaction(emoji= moofrown)
 
-@bot.command(help=" spotify command to show currently playing song if unable to see due to other activity blocking it")
-@commands.guild_only()
+
+
+@bot.command()
+@commands.guild_only() # We can only access activities from a guild
 async def spotify(ctx, user: discord.Member = None):
     user = user or ctx.author  # default to the caller
     spot = next((activity for activity in user.activities if isinstance(activity, discord.Spotify)), None)
@@ -307,7 +309,6 @@ async def spotify(ctx, user: discord.Member = None):
     embedspotify.add_field(name="Album", value=spot.album)
     embedspotify.set_thumbnail(url=spot.album_cover_url)
     await ctx.send(embed=embedspotify)
-
 
     
 
