@@ -320,7 +320,7 @@ async def spotify(ctx, *, member: discord.Member=None):
             await ctx.send(embed=emSpot)
             return
 
-        if isInstance(activity, Spotify) == False:
+        if isinstance(activity, Spotify) == False:
             await ctx.channel.send(f'{member.display_name} is not listening to music. ||weirdo||')
             return
 
