@@ -16,7 +16,7 @@ with open("./config.yml", "r", encoding = "utf-8") as file:
 
 
 
-bot = commands.Bot(command_prefix =config['Prefix'] , description = "speedy paw bot created by speediest paws")
+bot = commands.Bot(command_prefix =config['Prefix'] , description = "speedy paw bot created by speediest paws", intents=intents)
 bot.startTime = datetime.datetime.now(datetime.timezone.utc)
 tChannelID = config['test Channel ID']
 
@@ -301,8 +301,8 @@ async def spotify(ctx, *, member: discord.Member=None):
         member = ctx.message.author
     
     for activity in member.activities:
-        print(type(activity), activity)
-            
+        if isinstance(activity, Spotify):
+            await ctx.channel.send(f"{member.display_name} is listening to {activity.title} by {activity.artist}")
 
 
 
