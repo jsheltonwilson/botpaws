@@ -295,13 +295,20 @@ async def poll(ctx, *, question):
 
 
 
-@bot.command()
-@commands.guild_only()
-async def spotify(ctx, member: discord.Member=None):
-    member = member or ctx.message.author
-    for activity in member.activities:
-        if isinstance(activity, Spotify):
-            await ctx.send(f"{member.display_name} is listening to {activity.title} by {activity.artist}")
+async def spotify(self, ctx, user: discord.Member = None):
+    user = user or ctx.author  
+    spot = next((activity for activity in user.activities if isinstance(activity, discord.Spotify)), None)
+    if spot is None:
+        await ctx.send(f"{user.name} is not listening to Spotify")
+        return
+    embed = discord.Embed(title=f"{user.name}'s Spotify", color=spot.color)
+    embed.add_field(name="Song", value=spot.title)
+    embed.add_field(name="Artist", value=spot.artist)
+    embed.add_field(name="Album", value=spot.album)
+    embed.add_field(name="Track Link", value=f"[{spot.title}](https://open.spotify.com/track/{spot.track_id})")
+    embed.set_thumbnail(url=spot.album_cover_url)
+    await ctx.send(embed=embed)
+        print(f'{user.name} in {ctx.guild} called the command !spotify')
     
 
 
