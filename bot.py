@@ -301,6 +301,7 @@ async def spotify(ctx, *, user: discord.Member=None):
         user = ctx.message.author
 
     activity = user.activities
+    em = discord.Embed()
     em.title = f'{user.display_name} is listening to Spotify'
     em.set_thumbnail(url=activity.album_cover_url)
     em.add_field(name="**Song name:**", value=activity.title, inline=False)
