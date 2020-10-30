@@ -296,11 +296,11 @@ async def poll(ctx, *, question):
 
 @bot.command()
 @commands.guild_only()
-async def spotify(ctx, *, member: discord.Member=None):
-    if member is None:
-        member = ctx.message.author
+async def spotify(ctx, *, user: discord.Member=None):
+    if user is None:
+        user = ctx.message.author
 
-    activity = member.activities
+    activity = user.activities
     em.title = f'{user.display_name} is listening to Spotify'
     em.set_thumbnail(url=activity.album_cover_url)
     em.add_field(name="**Song name:**", value=activity.title, inline=False)
