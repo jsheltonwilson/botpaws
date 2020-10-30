@@ -301,9 +301,9 @@ async def spotify(ctx, *, member: discord.Member=None):
         member = ctx.message.author
 
     for activity in member.activities:
-        if isinstance(activity, Spotify):
+        if isinstance(activity, Spotify) == True:
             await ctx.channel.send(f"{member.display_name} is listening to {activity.title} by {activity.artist}")
-        else:
+        elif isinstance(activity, Spotify) == False:
             await ctx.channel.send(f"{member.display_name} isn't listening to music ||weirdo||")
         await ctx.channel.send(f'test {activity.title}')
 
