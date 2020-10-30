@@ -303,6 +303,7 @@ async def spotify(ctx, *, member: discord.Member=None):
         spot = next((activity for activity in member.activities if isinstance(activity, discord.Spotify)), None)
         if spot is None:
             await ctx.channel.send(f"{member.name} is not listening to music. ||weirdo||")
+            return
        
         emSpot = discord.Embed(
             title = f'*{member.display_name} is listening to spotify*',
@@ -319,7 +320,8 @@ async def spotify(ctx, *, member: discord.Member=None):
         m1, s1 = divmod(int(spot.duration.seconds), 60)
         song_length = f'{m1}:{s1}'
         emSpot.add_field(name="**Song Length:**", value=song_length, inline=False)
-        await ctx.send(embed=emSpot) 
+        await ctx.send(embed=emSpot)
+        return
     
 
 
