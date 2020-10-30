@@ -321,7 +321,6 @@ async def spotify(ctx, *, member: discord.Member=None):
             return
         else:
             await ctx.channel.send(f'{member.display_name} is not listening to music. ||weirdo||')
-            return
 
 
 
