@@ -295,7 +295,6 @@ async def poll(ctx, *, question):
 
 
 @bot.command()
-
 async def spotify(ctx, *, member: discord.Member=None):
     if member is None:
         member = ctx.message.author
@@ -317,10 +316,10 @@ async def spotify(ctx, *, member: discord.Member=None):
             m1, s1 = divmod(int(activity.duration.seconds), 60)
             song_length = f'{m1}:{s1}'
             emSpot.add_field(name="**Song Length:**", value=song_length, inline=False)
-            await ctx.send(embed=emSpot)
-            
+            await ctx.send(embed=emSpot) 
+        
         else:
-            return
+            await ctx.channel.send(f'{member.display_name} is not listening to music. ||weirdo||')
 
 
 
