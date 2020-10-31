@@ -208,6 +208,25 @@ async def slap(ctx, member: discord.Member):
     embedSlap.set_image(url= imgURL)
     await ctx.channel.send(embed= embedSlap)
 
+@bot.command(help= "faz command")
+async def slap(ctx, member: discord.Member):
+    request_url ="http://api.nekos.fun:8080/api/lick"
+    response = requests.get(request_url)
+    responseJSON = response.json()
+    imgURL = responseJSON.get('image')
+
+    embedLick = discord.Embed(
+        title = f'{ctx.author.display_name} **Licks** {member.display_name}',
+        color = bot.embed_color,
+        timestamp = datetime.datetime.now(datetime.timezone.utc)
+    )
+    embedLick.set_footer(
+        text = bot.footer,
+        icon_url= bot.footer_image
+    )
+    embedLick.set_image(url= imgURL)
+    await ctx.channel.send(embed= embedLick)
+
 @bot.command(help="kiss another member, **haram command**")
 async def kiss(ctx, member: discord.Member):
     request_url ="http://api.nekos.fun:8080/api/kiss"
