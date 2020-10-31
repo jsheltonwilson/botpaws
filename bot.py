@@ -209,7 +209,7 @@ async def slap(ctx, member: discord.Member):
     await ctx.channel.send(embed= embedSlap)
 
 @bot.command(help= "faz command")
-async def slap(ctx, member: discord.Member):
+async def lick(ctx, member: discord.Member):
     request_url ="http://api.nekos.fun:8080/api/lick"
     response = requests.get(request_url)
     responseJSON = response.json()
