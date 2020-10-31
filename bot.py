@@ -15,7 +15,8 @@ with open("./config.yml", "r", encoding = "utf-8") as file:
 
 
 
-intents = discord.Intents().presences
+intents = discord.Intents()
+intents.presences = True
 bot = commands.Bot(command_prefix =config['Prefix'] , description = "speedy paw bot created by speediest paws", intents=intents)
 bot.startTime = datetime.datetime.now(datetime.timezone.utc)
 tChannelID = config['test Channel ID']
