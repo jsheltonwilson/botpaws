@@ -323,7 +323,7 @@ async def spotify(ctx, *, member: discord.Member=None):
         spot = next((activity for activity in member.activities if isinstance(activity, discord.Spotify)), None)
         if spot is None:
             await ctx.channel.send(f"{member.name} is not listening to music. ||weirdo||")
-            return
+            
        
         emSpot = discord.Embed(
             title = f'*{member.display_name} is listening to spotify*',
