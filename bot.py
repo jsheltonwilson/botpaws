@@ -344,7 +344,7 @@ async def spotify(ctx, *, member: discord.Member=None):
         return
 
 
-@bot.command(aliases=['ud'], description="searches urban dictionary for term")
+@bot.command(aliases=['ud'], help="searches urban dictionary for term")
 async def urbandict(ctx, *msg):
     try:
         word = ' '.join(msg)
@@ -369,7 +369,7 @@ async def urbandict(ctx, *msg):
             return await ctx.send(embed= embedUD)
         
         embedUD = discord.Embed(
-            title = "Word",
+            title = "Urban Dictionary",
             description = word,
             color = bot.embed_color
         )
