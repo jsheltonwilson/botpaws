@@ -373,8 +373,8 @@ async def urbandict(ctx, *msg):
             description = word,
             color = bot.embed_color
         )
-        embed.add_field(name="Top definition:", value = response['list'][0]['definition'])
-        embed.add_field(name="Examples:", value=response['list'][0]['example'])
+        embedUD.add_field(name="Top definition:", value = response['list'][0]['definition'])
+        embedUD.add_field(name="Examples:", value=response['list'][0]['example'])
         await ctx.send(embed=embedUD)
     except:
         await ctx.send("an error has occured")
