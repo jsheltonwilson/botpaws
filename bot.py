@@ -342,7 +342,43 @@ async def spotify(ctx, *, member: discord.Member=None):
         emSpot.add_field(name="**Song Length:**", value=song_length, inline=False)
         await ctx.send(embed=emSpot)
         return
-    
+
+
+@bot.command(aliases=['ud'], description="searches urban dictionary for term")
+async def urbandict(ctx, *msg):
+    try:
+        word = ' '.join(msg)
+        api = "http://api.urbandictionary.com/v0/define"
+
+        response = requests.get(api, params=[('term',word)]).json()
+        embedUD = discord.Embed(
+            description = "No results found!",
+            color = bot.embed_color,
+            timestamp = datetime.datetime.now(datetime.timezone.utc)
+        )
+        embedUD.set_author(
+        name = ctx.author.name,
+        icon_url = ctx.author.avatar_url
+
+        )
+         embedUD.set_footer(
+        text = bot.footer,
+        icon_url= bot.footer_image
+        )
+        if len(response["list"]) == 0:
+            return await ctx.send(embed= embedUD)
+        
+        embedUD = discord.Embed(
+            title = "Word",
+            description = word,
+            color = bot.embed_color
+        )
+        embed.add_field(name="Top definition:", value = response['list'][0]['definition'])
+        embed.add_field(name="Examples:", value=response['list'][0]['example'])
+        await ctx.send(embed=embedUD)
+    except:
+        await ctx.send("an error has occured")
+
 
 
 
