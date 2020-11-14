@@ -361,7 +361,7 @@ async def urbandict(ctx, *msg):
         icon_url = ctx.author.avatar_url
 
         )
-         embedUD.set_footer(
+        embedUD.set_footer(
         text = bot.footer,
         icon_url= bot.footer_image
         )
