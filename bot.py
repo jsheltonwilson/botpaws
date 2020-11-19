@@ -71,6 +71,10 @@ async def on_message(message):
             await message.channel.send('hi medium paws')
         elif message.author.id == 699403795876282398:
             await message.channel.send("hi rusty paws")
+        elif message.author.id == 722807206340460564:
+            await message.channel.send('hi fofo paws')
+        elif message.author.id == 329927328300007425:
+            await message.channel.send("hi once a month fake mouse paws")
         else:
             await message.channel.send("hi slow paws")
    
