@@ -175,6 +175,18 @@ async def boo(ctx, *, member: discord.Member=None):
 
     await ctx.channel.send(f'boo! {member.mention}')
 
+@bot.command(help="fake maus retriever!")
+async def tfm(ctx, *, member: discord.Member=None):
+    await ctx.channel.purge(limit=1)
+    if member is None:
+        member = ctx.message.author
+    
+    
+
+    await ctx.channel.send(f'play mousie game {member.mention}')
+
+
+
 @bot.command(help= "hug another member duh")
 async def hug(ctx, member: discord.Member):
     request_url ="http://api.nekos.fun:8080/api/hug"
