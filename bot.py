@@ -175,7 +175,7 @@ async def boo(ctx, *, member: discord.Member=None):
 
     await ctx.channel.send(f'boo! {member.mention}')
 
-@bot.command(pass_context=True, help = "display total servers")
+@bot.command(help = "display total servers")
 async def botservers(ctx):
     await ctx.send("I'm in " + str(len(bot.guilds)) + " servers")
 
