@@ -65,16 +65,6 @@ async def on_message(message):
     if bot.user.mentioned_in(message) and message.mention_everyone is False:
         if message.author.id == 573247938747170836 or message.author.id == 395616177386422285:
             await message.channel.send("hi speedy paws")
-        elif message.author.id == 376673538414739458:
-            await message.channel.send("hi lil speedy paws")
-        elif message.author.id == 358744905796943883:
-            await message.channel.send('hi medium paws')
-        elif message.author.id == 699403795876282398:
-            await message.channel.send("hi rusty paws")
-        elif message.author.id == 722807206340460564:
-            await message.channel.send('hi fofo paws')
-        elif message.author.id == 329927328300007425:
-            await message.channel.send("hi once a month fake mouse paws")
         else:
             await message.channel.send("hi slow paws")
    
