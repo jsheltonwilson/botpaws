@@ -66,7 +66,7 @@ async def on_message(message):
         if message.author.id == 573247938747170836 or message.author.id == 395616177386422285 or message.author.id == 250281758489051137:
             await message.channel.send("hi speedy paws")
         elif message.author.id == 399275570992513025:
-            await message.channel.send("hi urozcy paws")
+            await message.channel.send("hi uroczy paws")
         else:
             await message.channel.send("hi slow paws")
    
