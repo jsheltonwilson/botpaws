@@ -63,7 +63,7 @@ async def on_ready():
 @bot.event
 async def on_message(message):
     if bot.user.mentioned_in(message) and message.mention_everyone is False:
-        if message.author.id == 573247938747170836 or message.author.id == 395616177386422285:
+        if message.author.id == 573247938747170836 or message.author.id == 395616177386422285 or message.author.id == 250281758489051137:
             await message.channel.send("hi speedy paws")
         else:
             await message.channel.send("hi slow paws")
