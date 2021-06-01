@@ -397,7 +397,7 @@ async def urbandict(ctx, *msg):
 @bot.command(help="tfm profile")
 async def profile(ctx, msg):
     
-    user = msg
+    user = msg.replace('#','-')
     
     api = "https://cheese.formice.com/api/players/"
 
