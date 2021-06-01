@@ -395,9 +395,9 @@ async def urbandict(ctx, *msg):
 
 
 @bot.command(help="tfm profile")
-async def profile(ctx, *, msg):
-    user = msg
-    usercleaned = user.replace('#','-')
+async def profile(ctx, msg):
+    
+    usercleaned = msg.replace('#','-')
     
     api = "https://cfmtest.tk/api/players/"
 
