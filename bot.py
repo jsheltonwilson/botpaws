@@ -406,11 +406,11 @@ async def profile(ctx, msg):
     response = requests.get(requestUrl)
 
     if response.status_code == 200:
-        return 
+        responseJSON = response.json() 
     else:
         await ctx.channel.send("An error has occured. Please try again")
     
-    responseJSON = response.json()
+    
 
     tfmUser = responseJSON.get('name')
     tfmRounds = responseJSON["stats"]["normal"]["rounds"]
@@ -425,7 +425,7 @@ async def profile(ctx, msg):
         name = ctx.author.name,
         icon_url = ctx.author.avatar_url
 
-        )
+    )
 
 
     emTfm.set_footer(
@@ -433,11 +433,12 @@ async def profile(ctx, msg):
             icon_url=bot.footer_image,
             timestamp = datetime.datetime.now(datetime.timezone.utc)
 
-        )
+    )
     
     emTfm.add_field(name="**rounds:**", value=tfmRounds, inline=False)
     emTfm.add_field(name="**cheese gathered:**", value=tfmCheese, inline=False)
     emTfm.add_field(name="**firsts:**", value=tfmFirsts, inline=False)
+    
     await ctx.channel.send(embed= emTfm)   
     
 
