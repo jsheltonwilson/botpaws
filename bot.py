@@ -399,7 +399,7 @@ async def profile(ctx, msg):
     
     usercleaned = msg.replace('#','-')
     
-    api = "https://cfmtest.tk/api/players/"
+    api = "https://cheese.formice.com/api/players/"
 
     requestUrl = api + usercleaned + '?recent=false'
 
@@ -413,9 +413,9 @@ async def profile(ctx, msg):
     responseJSON = response.json()
 
     tfmUser = responseJSON.get('name')
-    tfmRounds = responseJSON['stats']['normal']['rounds']
-    tfmCheese = responseJSON['stats']['normal']['cheese']
-    tfmFirsts = responseJSON['stats']['normal']['first']
+    tfmRounds = responseJSON["stats"]["normal"]["rounds"]
+    tfmCheese = responseJSON["stats"]["normal"]["cheese"]
+    tfmFirsts = responseJSON["stats"]["normal"]["first"]
     emTfm = discord.Embed(
         title = f'*{tfmUser}*',
         color = bot.embed_color
