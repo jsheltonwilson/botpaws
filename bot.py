@@ -413,9 +413,9 @@ async def profile(ctx, msg):
     
 
     tfmUser = responseJSON.get('name')
-    tfmRounds = responseJSON["stats"]["normal"]["rounds"]
-    tfmCheese = responseJSON["stats"]["normal"]["cheese"]
-    tfmFirsts = responseJSON["stats"]["normal"]["first"]
+    tfmRounds = str(responseJSON["stats"]["normal"]["rounds"])
+    tfmCheese = str(responseJSON["stats"]["normal"]["cheese"])
+    tfmFirsts = str(responseJSON["stats"]["normal"]["first"])
     emTfm = discord.Embed(
         title = f'*{tfmUser}*',
         color = bot.embed_color
