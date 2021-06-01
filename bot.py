@@ -418,7 +418,8 @@ async def profile(ctx, msg):
     tfmFirsts = str(responseJSON["stats"]["normal"]["first"])
     emTfm = discord.Embed(
         title = f'*{tfmUser}*',
-        color = bot.embed_color
+        color = bot.embed_color,
+        timestamp = datetime.datetime.now(datetime.timezone.utc)
     )
 
     emTfm.set_author(
@@ -431,7 +432,7 @@ async def profile(ctx, msg):
     emTfm.set_footer(
             text= bot.footer,
             icon_url=bot.footer_image,
-            timestamp = datetime.datetime.now(datetime.timezone.utc)
+            
 
     )
     
