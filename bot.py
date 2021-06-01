@@ -1,4 +1,5 @@
 import discord
+from discord.embeds import Embed
 from discord.ext import commands
 from discord.utils import get
 import datetime
@@ -7,6 +8,7 @@ from ruamel.yaml import YAML
 import os
 import requests
 from discord import Spotify
+import urllib.parse
 
 
 yaml = YAML()
@@ -390,6 +392,58 @@ async def urbandict(ctx, *msg):
         await ctx.send(embed=embedUD)
     except:
         await ctx.send("an error has occured")
+
+
+@bot.command(help="tfm profile")
+async def profile(ctx, *msg):
+    user = msg
+    usercleaned = user.replace('#','-')
+    
+    api = "https://cfmtest.tk/api/players/"
+
+    requestUrl = api + usercleaned + '?recent=false'
+
+    response = requests.get(requestUrl)
+
+    if response.status_code == 200:
+        return 
+    else:
+        await ctx.channel.send("An error has occured. Please try again")
+    
+    responseJSON = response.json()
+
+    tfmUser = responseJSON.get('name')
+    tfmRounds = responseJSON['stats']['normal']['rounds']
+    tfmCheese = responseJSON['stats']['normal']['cheese']
+    tfmFirsts = responseJSON['stats']['normal']['first']
+    emTfm = discord.Embed(
+        title = f'*{tfmUser}*',
+        color = bot.embed_color
+    )
+
+    emTfm.set_author(
+        name = ctx.author.name,
+        icon_url = ctx.author.avatar_url
+
+        )
+
+
+    emTfm.set_footer(
+            text= bot.footer,
+            icon_url=bot.footer_image,
+            timestamp = datetime.datetime.now(datetime.timezone.utc)
+
+        )
+    
+    emTfm.add_field(name="**rounds:**", value=tfmRounds, inline=False)
+    emTfm.add_field(name="**cheese gathered:**", value=tfmCheese, inline=False)
+    emTfm.add_field(name="**firsts:**", value=tfmFirsts, inline=False)
+    await ctx.channel.send(embed= emTfm)   
+    
+
+
+
+
 
 
 
